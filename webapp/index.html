@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiências</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <nav id="sidebar">
+        <div id="menu-button" class="menu-button">☰</div>
+        <div id="menu-content" class="menu-content">
+            Experiências
+            <ul>
+                <li id="exp1-button">Aluno fujão</li>
+                <li id="exp2-button">Cobertura das Operadoras</li>
+            </ul>
+            <button id="about-experiences">Sobre</button>
+            <!-- Botão para limpar qualquer experimento -->
+            <button id="clear-experiment" onclick="limparMapa()">Limpar Experimento</button>
+        </div>
+    </nav>
+
+    <div id="main-content">
+        <div id="exp1-section">
+            <h2>Análise de Alunos presentes na Instituição</h2>
+            <div class="controls">
+                <div id="device-selector" class="exp1-first-row">
+                    <button onclick="abrirModalInstituicaoSwal()">Cadastrar Instituição</button>
+                    <button onclick="abrirModalConsultaInstituicaoSwal()">Atribuir Relacionamento</button>
+                </div>
+                <div class="exp1-second-row">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <label for="devices">Selecione um dispositivo:</label>
+                        <select id="devices"></select>
+                        <label for="instituicao-relacionada">Instituição:</label>
+                        <input type="text" id="instituicao-relacionada" placeholder="Instituição relacionada" readonly />
+                    </div>
+                    <button onclick="verificarAlunoInstituicao()">Aluno Fujão</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <div id="exp2-section">
+            <h2>Cobertura das Operadoras</h2>
+            <div class="controls">
+                <div id="provider-filter">
+                    <label for="providers">Selecione um Provedor:</label>
+                    <select id="providers">
+                        <option value="">Todos os Provedores</option>
+                    </select>
+                    <button onclick="plotarPontosOperadora()">Analisar Cobertura</button>
+                </div>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
