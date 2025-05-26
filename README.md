@@ -6,6 +6,7 @@ Este repositório contém uma implementação do FIWARE Orion-LD, utilizando a e
 
 - **Orion-LD**: Broker de Contexto compatível com NGSI-LD, permitindo a gestão e a consulta de entidades baseadas em contexto.
 - **MongoDB (v4.0)**: Base de dados para armazenamento de dados contextuais.
+- **MobileApp**: Aplicativo móvel para coleta e envio de dados dos sensores de smartphones Android.
 - **Node-RED**: Ferramenta para criação de fluxos de automação e integração com IoT.
 - **WebApp**: Serviço baseado em `nginx` para servir arquivos estáticos e configurações personalizadas.
 - Configuração de **docker-compose** para facilitar a orquestração e o gerenciamento dos containers.
@@ -19,6 +20,22 @@ Este repositório é ideal para quem deseja explorar a criação e o gerenciamen
 - **27017/TCP** - MongoDB (Porta do banco de dados, recomenda-se não abrir para a internet)
 - **1880/TCP** - Node-RED (Interface web para criação de fluxos IoT)
 - **8080/TCP** - WebApp (Serviço para servir arquivos estáticos via `nginx`)
+
+
+## Configuração do MobileApp
+
+Após configurar corretamente o servidor FIWARE, baixe o aplicativo `EduFiware` no seu smartphone Android e comece a enviar os dados.
+
+O arquivo APK do aplicativo está disponível na pasta `mobileapp` ou diretamente pelo link abaixo:
+
+👉[EduFiware.apk](mobileapp/EduFIWARE.apk)
+
+Para facilitar o acesso pelo celular, utilize o QR Code abaixo:
+
+![EduFiware](images/qr-code.png)
+
+Além disso, a pasta `mobileapp` contém um arquivo README.md com informações detalhadas sobre o aplicativo e instruções de instalação.
+
 
 ## Configuração do WebApp
 
