@@ -28,7 +28,7 @@ Após configurar corretamente o servidor FIWARE, baixe o aplicativo `EduFiware` 
 
 O arquivo APK do aplicativo está disponível na pasta `mobileapp` ou diretamente pelo link abaixo:
 
-👉[EduFiware.apk](mobileapp/EduFIWARE.apk)
+👉[EduFiware.apk](https://github.com/EduFiware/edufiware/releases/download/v1.4.0/EduFIWARE.apk)
 
 Para facilitar o acesso pelo celular, utilize o QR Code abaixo:
 
