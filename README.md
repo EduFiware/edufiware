@@ -44,7 +44,6 @@ Para executar a plataforma FIWARE-LD, recomenda-se um servidor com as seguintes 
 
 - **Rede e Portas Necessárias:**
   - 1026/TCP (Orion-LD)
-  - 1027/TCP (Orion-LD externo)
   - 27017/TCP (MongoDB)
   - 1880/TCP (Node-RED)
   - 8080/TCP (WebApp)
