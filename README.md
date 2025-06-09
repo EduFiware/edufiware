@@ -21,6 +21,41 @@ Este repositório é ideal para quem deseja explorar a criação e o gerenciamen
 - **1880/TCP** - Node-RED (Interface web para criação de fluxos IoT)
 - **8080/TCP** - WebApp (Serviço para servir arquivos estáticos via `nginx`)
 
+## 🖥️ Requisitos Sistêmicos do Servidor
+
+Para executar a plataforma FIWARE-LD, recomenda-se um servidor com as seguintes características mínimas:
+
+- **Sistema Operacional:**  
+  Ubuntu Server 24.04 LTS (imagem: `canonical/ubuntu-24_04-lts/server`), mas pode ser adaptado para outras distribuições Linux compatíveis com Docker.
+
+- **Recursos de Hardware (mínimo):**
+  - **vCPUs:** 1 (Standard B1s)
+  - **Memória RAM:** 1 GiB
+  - **Disco:** 30 GiB (Standard SSD LRS)
+  - **Max IOPS:** 500
+  - **Max throughput:** 100 MBps
+
+- **Armazenamento:**  
+  Disco SSD padrão, 30 GiB, criptografado.
+
+- **Dependências de Software:**
+  - Docker
+  - Docker Compose
+
+- **Rede e Portas Necessárias:**
+  - 1026/TCP (Orion-LD)
+  - 1027/TCP (Orion-LD externo)
+  - 27017/TCP (MongoDB)
+  - 1880/TCP (Node-RED)
+  - 8080/TCP (WebApp)
+
+- **Requisitos adicionais:**
+  - Acesso à internet para download de imagens Docker e atualizações.
+  - Recomenda-se configurar volumes persistentes para o MongoDB e Node-RED para evitar perda de dados em reinicializações.
+
+> **Obs.:** Para ambientes de produção ou cargas maiores, recomenda-se aumentar CPU, RAM e disco conforme a demanda dos serviços e volume de dados.
+
+---
 
 ## Configuração do MobileApp
 
