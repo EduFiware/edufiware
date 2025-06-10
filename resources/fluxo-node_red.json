@@ -1,11 +1,38 @@
 [
     {
-        "id": "c38cad85ec437cc0",
+        "id": "4b6577ed0e14f4bc",
+        "type": "tab",
+        "label": "Fluxo 2",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8e353faac045437c",
         "type": "tab",
         "label": "Fluxo 1",
         "disabled": false,
         "info": "",
         "env": []
+    },
+    {
+        "id": "b307c78b2e8889b6",
+        "type": "ui_tab",
+        "name": "Dashboard de Monitoramento",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "1fcd501100c708e0",
+        "type": "ui_group",
+        "name": "Entradas",
+        "tab": "b307c78b2e8889b6",
+        "order": 1,
+        "disp": true,
+        "width": 5,
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "205e0c7dc10f8365",
@@ -94,35 +121,16 @@
             "allowTempTheme": "true",
             "dateFormat": "DD/MM/YYYY",
             "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 8,
-                "cx": 6,
-                "cy": 19,
-                "px": 0,
-                "py": 18
+                "sx": 50,
+                "sy": 60,
+                "gx": 5,
+                "gy": 5,
+                "cx": 10,
+                "cy": 0,
+                "px": 12,
+                "py": 40
             }
         }
-    },
-    {
-        "id": "b307c78b2e8889b6",
-        "type": "ui_tab",
-        "name": "Dashboard de Monitoramento",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "1fcd501100c708e0",
-        "type": "ui_group",
-        "name": "Entradas",
-        "tab": "b307c78b2e8889b6",
-        "order": 1,
-        "disp": true,
-        "width": "7",
-        "collapse": false,
-        "className": ""
     },
     {
         "id": "fce3c81ae0df6f43",
@@ -131,7 +139,7 @@
         "tab": "b307c78b2e8889b6",
         "order": 2,
         "disp": true,
-        "width": "8",
+        "width": 8,
         "collapse": false,
         "className": ""
     },
@@ -142,7 +150,7 @@
         "tab": "b307c78b2e8889b6",
         "order": 3,
         "disp": false,
-        "width": 6,
+        "width": 5,
         "collapse": false,
         "className": ""
     },
@@ -153,25 +161,212 @@
         "tab": "b307c78b2e8889b6",
         "order": 4,
         "disp": false,
-        "width": 6,
+        "width": 5,
         "collapse": false,
         "className": ""
     },
     {
-        "id": "217be4942c56ebfe",
+        "id": "89842ae293b6b4e1",
         "type": "ui_group",
         "name": "Dados Operadora",
         "tab": "b307c78b2e8889b6",
         "order": 5,
         "disp": true,
-        "width": 7,
+        "width": "5",
         "collapse": false,
         "className": ""
     },
     {
-        "id": "921e54226746e4fe",
+        "id": "f90745e5d1ce2a1d",
+        "type": "ui_spacer",
+        "z": "8e353faac045437c",
+        "name": "spacer",
+        "group": "5e3d3fcb93bd6985",
+        "order": 2,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "b721b04c7be7af99",
+        "type": "http in",
+        "z": "4b6577ed0e14f4bc",
+        "name": "",
+        "url": "/notify",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "658480fb378c684d",
+                "2c30d0f87cb148c8",
+                "1e0ab04d11598b63"
+            ]
+        ]
+    },
+    {
+        "id": "658480fb378c684d",
+        "type": "json",
+        "z": "4b6577ed0e14f4bc",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "bb3ee9f6db7fdca4"
+            ]
+        ]
+    },
+    {
+        "id": "bb3ee9f6db7fdca4",
+        "type": "debug",
+        "z": "4b6577ed0e14f4bc",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "2c30d0f87cb148c8",
+        "type": "function",
+        "z": "4b6577ed0e14f4bc",
+        "name": "function 1",
+        "func": "var payload = msg.payload;\nvar temperatura = payload.data[0][\"https://uri.fiware.org/ns/data-models#temperature\"].value;\nmsg.payload = temperatura;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [
+                "5ea134415276f5d5",
+                "706fa14875a96fd2",
+                "4e388f5eec38e9ce"
+            ]
+        ]
+    },
+    {
+        "id": "5ea134415276f5d5",
+        "type": "debug",
+        "z": "4b6577ed0e14f4bc",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "706fa14875a96fd2",
+        "type": "ui_text",
+        "z": "4b6577ed0e14f4bc",
+        "d": true,
+        "group": "fce3c81ae0df6f43",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "name": "Temperature",
+        "label": "Temperatura Atual",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 790,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4e388f5eec38e9ce",
+        "type": "ui_gauge",
+        "z": "4b6577ed0e14f4bc",
+        "d": true,
+        "name": "",
+        "group": "fce3c81ae0df6f43",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 770,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "1e0ab04d11598b63",
+        "type": "function",
+        "z": "4b6577ed0e14f4bc",
+        "name": "function 2",
+        "func": "var payload = msg.payload;\nvar temperatura = payload.data[0].id;\nmsg.payload = temperatura;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "da06bb20becd8839"
+            ]
+        ]
+    },
+    {
+        "id": "da06bb20becd8839",
+        "type": "debug",
+        "z": "4b6577ed0e14f4bc",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "335ca09f02a166f9",
         "type": "inject",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "",
         "props": [
             {
@@ -193,14 +388,14 @@
         "y": 60,
         "wires": [
             [
-                "161b1fa7aa8e3a37"
+                "0f9847780a1bd81e"
             ]
         ]
     },
     {
-        "id": "161b1fa7aa8e3a37",
+        "id": "0f9847780a1bd81e",
         "type": "http request",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "",
         "method": "GET",
         "ret": "txt",
@@ -217,14 +412,14 @@
         "y": 120,
         "wires": [
             [
-                "d3e8f9d7c0bba0a9"
+                "b92225d87e02ac45"
             ]
         ]
     },
     {
-        "id": "d3e8f9d7c0bba0a9",
+        "id": "b92225d87e02ac45",
         "type": "function",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "function 3",
         "func": "try {\n    // Tenta converter a string JSON em um array\n    const jsonData = JSON.parse(msg.payload);\n\n    // Verifica se jsonData é um array\n    if (Array.isArray(jsonData)) {\n        // Extrair os IDs\n        const ids = jsonData.map(item => item.id);\n        \n        // Definir a saída\n        msg.payload = ids;\n    } else {\n        // Se não for um array, retorna um erro ou uma mensagem padrão\n        msg.payload = \"Erro: A entrada não é um array.\";\n    }\n} catch (error) {\n    // Se ocorrer um erro ao analisar a string JSON\n    msg.payload = \"Erro ao analisar JSON: \" + error.message;\n}\n\n// Retornar a mensagem\nreturn msg;",
         "outputs": 1,
@@ -237,15 +432,15 @@
         "y": 60,
         "wires": [
             [
-                "78290c68e9e977f9",
-                "981c3450bbef6690"
+                "75d9f560a3c63e95",
+                "4976cfc032dd9a9d"
             ]
         ]
     },
     {
-        "id": "78290c68e9e977f9",
+        "id": "75d9f560a3c63e95",
         "type": "debug",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "debug 5",
         "active": false,
         "tosidebar": true,
@@ -259,9 +454,9 @@
         "wires": []
     },
     {
-        "id": "981c3450bbef6690",
+        "id": "4976cfc032dd9a9d",
         "type": "function",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "function 4",
         "func": "msg.options = msg.payload;\n\n// Salva a quantidade de registros no contador\nmsg.count = Array.isArray(msg.payload) ? msg.payload.length : 0;\n\nreturn msg;\n\n",
         "outputs": 1,
@@ -274,15 +469,15 @@
         "y": 140,
         "wires": [
             [
-                "e3d47abc1310746a",
-                "de6f36abd0630b0d"
+                "d8359fc6c9ddd508",
+                "4f303fce9a2aaa4c"
             ]
         ]
     },
     {
-        "id": "c8e8984c4e7e9147",
+        "id": "6162a589ef9818a2",
         "type": "debug",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "debug 6",
         "active": false,
         "tosidebar": true,
@@ -296,9 +491,9 @@
         "wires": []
     },
     {
-        "id": "9cba4548bdbca893",
+        "id": "cba9393b76219b23",
         "type": "function",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "function 5",
         "func": "// Monta a URL para consulta no Orion-LD\nmsg.url = `http://orion:1026/ngsi-ld/v1/entities/${msg.payload}?options=sysAttrs`;\n\n// Grava o valor do msg.payload no contexto de fluxo\nflow.set('valorAtual', msg.url);\n\n\nreturn msg;\n\n",
         "outputs": 1,
@@ -311,15 +506,15 @@
         "y": 220,
         "wires": [
             [
-                "fdd0cfbc93e4eb21",
-                "08d9853781781b5d"
+                "84836c24a7c8c398",
+                "65973bd893cd7a03"
             ]
         ]
     },
     {
-        "id": "fdd0cfbc93e4eb21",
+        "id": "84836c24a7c8c398",
         "type": "debug",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "debug 7",
         "active": false,
         "tosidebar": true,
@@ -334,9 +529,9 @@
         "wires": []
     },
     {
-        "id": "5969407f1217ac8b",
+        "id": "e58af9e449df2ce0",
         "type": "function",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "function 6",
         "func": "let data = msg.payload;\n\n// Função para extrair apenas números de uma string\nfunction extractNumber(value) {\n    if (typeof value === \"string\") {\n        let num = value.match(/-?\\d+(\\.\\d+)?/); // Captura números inteiros ou decimais (positivos e negativos)\n        return num ? parseFloat(num[0]) : null; // Converte para número ou retorna null se não encontrar\n    }\n    return value; // Se já for numérico, retorna direto\n}\n\n// Extrai os valores do JSON retornado pelo Orion-LD\nmsg.payload = {\n    device_id: data.id.replace(\"urn:ngsi-ld:\", \"\"), // Remove o prefixo URN\n    marca: data.marca?.value || \"N/A\",  // Se não houver valor, retorna \"N/A\"\n    modelo: data.modelo?.value || \"N/A\",  // Se não houver valor, retorna \"N/A\"\n    localizacao: data.localizacao?.value?.coordinates || [0, 0], // Latitude e Longitude\n    ultimaMedicao: data.ultimaMedicao?.value || \"N/A\", // Data da última medição\n    provedorSIM: data.provedorSIM?.value || \"N/A\",\n    tipoSinal: data.tipoSinal?.value || \"N/A\",\n    intensidadeSinal: extractNumber(data.intensidadeSinal?.value || \"N/A\"),\n    acelerometro: {\n        x: extractNumber(data.acelerometro?.value?.x),  // Extrai número de x\n        y: extractNumber(data.acelerometro?.value?.y),  // Extrai número de y\n        z: extractNumber(data.acelerometro?.value?.z)   // Extrai número de z\n    },\n    giroscopio: {\n        x: extractNumber(data.giroscopio?.value?.x),  // Extrai número de x\n        y: extractNumber(data.giroscopio?.value?.y),  // Extrai número de y\n        z: extractNumber(data.giroscopio?.value?.z)   // Extrai número de z\n    },\n    barometro: data.barometro?.value || \"N/A\",\n    magnetometro: {\n        x: extractNumber(data.magnetometro?.value?.x),  // Extrai número de x\n        y: extractNumber(data.magnetometro?.value?.y),  // Extrai número de y\n        z: extractNumber(data.magnetometro?.value?.z)   // Extrai número de z\n    },\n    temperatura: extractNumber(data.temperatura?.value),  // Extrai número\n    umidade: extractNumber(data.umidade?.value),  // Extrai número\n    luzAmbiente: extractNumber(data.luzAmbiente?.value),  // Extrai número\n    passos: extractNumber(data.passos?.value),  // Extrai número\n    ruido: extractNumber(data.ruido?.value)  // Extrai número\n};\n\nreturn msg;",
         "outputs": 1,
@@ -349,28 +544,28 @@
         "y": 340,
         "wires": [
             [
-                "c373ea447f10d755",
-                "6d48284782da0f38",
-                "c91552babde7e16e",
-                "1e7a005920753490",
-                "da93933d11c8a78c",
-                "df7d8e31e10c2669",
-                "3a4d5b461d4723d6",
-                "3c4312b484a8ed44",
-                "8910be78b5e66fe5",
-                "4a75fec5b8214efc",
-                "f029b7d8c7ae04e6",
-                "b9d28fa9d8a70b26",
-                "4cbb0717f8bbd2aa",
-                "499daaff8a080f1f",
-                "1fa9f1b56c7d8abf"
+                "f7671b475f25fbbc",
+                "0fca7d91588ac499",
+                "0c91363a8d872199",
+                "ab963192249f3baf",
+                "5d5c9147e662f62e",
+                "52a4a827e4b7bc25",
+                "9f482a3b2292fd9c",
+                "01473431a3c4b3e6",
+                "dce18c590a92ab94",
+                "31212520f0d20209",
+                "ec1e7ea85dc2c038",
+                "d68e627f1a63f7bc",
+                "5c13dfb38436fa06",
+                "b7ec7f603d85abc4",
+                "4e899017222b4654"
             ]
         ]
     },
     {
-        "id": "c373ea447f10d755",
+        "id": "f7671b475f25fbbc",
         "type": "debug",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "debug 8",
         "active": false,
         "tosidebar": true,
@@ -384,9 +579,9 @@
         "wires": []
     },
     {
-        "id": "08d9853781781b5d",
+        "id": "65973bd893cd7a03",
         "type": "http request",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -403,15 +598,15 @@
         "y": 280,
         "wires": [
             [
-                "c8e8984c4e7e9147",
-                "5969407f1217ac8b"
+                "6162a589ef9818a2",
+                "e58af9e449df2ce0"
             ]
         ]
     },
     {
-        "id": "3766ba7102b7d5aa",
+        "id": "ba693b881845f4fc",
         "type": "inject",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "",
         "props": [
             {
@@ -433,22 +628,22 @@
         "y": 280,
         "wires": [
             [
-                "08d9853781781b5d"
+                "65973bd893cd7a03"
             ]
         ]
     },
     {
-        "id": "e3d47abc1310746a",
+        "id": "d8359fc6c9ddd508",
         "type": "ui_dropdown",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "Dispositivos",
         "label": "Dispositivos",
         "tooltip": "",
         "place": "Selecione um dispositivo",
         "group": "1fcd501100c708e0",
         "order": 1,
-        "width": "0",
-        "height": "0",
+        "width": 5,
+        "height": 1,
         "passthru": true,
         "multiple": false,
         "options": [
@@ -466,14 +661,14 @@
         "y": 140,
         "wires": [
             [
-                "9cba4548bdbca893"
+                "cba9393b76219b23"
             ]
         ]
     },
     {
-        "id": "6d48284782da0f38",
+        "id": "0fca7d91588ac499",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "group": "fce3c81ae0df6f43",
         "order": 1,
         "width": 0,
@@ -492,9 +687,9 @@
         "wires": []
     },
     {
-        "id": "c91552babde7e16e",
+        "id": "0c91363a8d872199",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "group": "fce3c81ae0df6f43",
         "order": 2,
         "width": 0,
@@ -513,9 +708,9 @@
         "wires": []
     },
     {
-        "id": "1e7a005920753490",
+        "id": "ab963192249f3baf",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "group": "fce3c81ae0df6f43",
         "order": 3,
         "width": 0,
@@ -534,9 +729,9 @@
         "wires": []
     },
     {
-        "id": "da93933d11c8a78c",
+        "id": "5d5c9147e662f62e",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "group": "fce3c81ae0df6f43",
         "order": 7,
         "width": 0,
@@ -555,9 +750,9 @@
         "wires": []
     },
     {
-        "id": "8910be78b5e66fe5",
+        "id": "dce18c590a92ab94",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "group": "fce3c81ae0df6f43",
         "order": 6,
         "width": 0,
@@ -576,9 +771,9 @@
         "wires": []
     },
     {
-        "id": "4a75fec5b8214efc",
+        "id": "31212520f0d20209",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "group": "fce3c81ae0df6f43",
         "order": 4,
         "width": 0,
@@ -597,10 +792,10 @@
         "wires": []
     },
     {
-        "id": "f029b7d8c7ae04e6",
+        "id": "ec1e7ea85dc2c038",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
-        "group": "217be4942c56ebfe",
+        "z": "8e353faac045437c",
+        "group": "89842ae293b6b4e1",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -618,10 +813,10 @@
         "wires": []
     },
     {
-        "id": "b9d28fa9d8a70b26",
+        "id": "d68e627f1a63f7bc",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
-        "group": "217be4942c56ebfe",
+        "z": "8e353faac045437c",
+        "group": "89842ae293b6b4e1",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -639,16 +834,16 @@
         "wires": []
     },
     {
-        "id": "4cbb0717f8bbd2aa",
+        "id": "5c13dfb38436fa06",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
-        "group": "217be4942c56ebfe",
+        "z": "8e353faac045437c",
+        "group": "89842ae293b6b4e1",
         "order": 3,
         "width": 0,
         "height": 0,
         "name": "",
         "label": "Intensidade sinal",
-        "format": "{{msg.payload.intensidadeSinal}} db",
+        "format": "{{msg.payload.intensidadeSinal}} dBm",
         "layout": "row-spread",
         "className": "",
         "style": true,
@@ -660,9 +855,9 @@
         "wires": []
     },
     {
-        "id": "499daaff8a080f1f",
+        "id": "b7ec7f603d85abc4",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "group": "fce3c81ae0df6f43",
         "order": 5,
         "width": 0,
@@ -681,9 +876,9 @@
         "wires": []
     },
     {
-        "id": "df7d8e31e10c2669",
+        "id": "52a4a827e4b7bc25",
         "type": "ui_gauge",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "",
         "group": "3e13888097f9c2f2",
         "order": 1,
@@ -709,14 +904,14 @@
         "wires": []
     },
     {
-        "id": "3a4d5b461d4723d6",
+        "id": "9f482a3b2292fd9c",
         "type": "ui_gauge",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "",
         "group": "5e3d3fcb93bd6985",
         "order": 1,
-        "width": 6,
-        "height": 5,
+        "width": 0,
+        "height": 0,
         "gtype": "donut",
         "title": "Umidade",
         "label": "%",
@@ -737,14 +932,14 @@
         "wires": []
     },
     {
-        "id": "3c4312b484a8ed44",
+        "id": "01473431a3c4b3e6",
         "type": "ui_gauge",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "",
         "group": "5e3d3fcb93bd6985",
-        "order": 2,
-        "width": 6,
-        "height": 4,
+        "order": 3,
+        "width": 0,
+        "height": 0,
         "gtype": "wave",
         "title": "Luz Ambiente",
         "label": "Lux",
@@ -765,9 +960,9 @@
         "wires": []
     },
     {
-        "id": "1fa9f1b56c7d8abf",
+        "id": "4e899017222b4654",
         "type": "ui_gauge",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "name": "",
         "group": "3e13888097f9c2f2",
         "order": 2,
@@ -793,13 +988,13 @@
         "wires": []
     },
     {
-        "id": "de6f36abd0630b0d",
+        "id": "4f303fce9a2aaa4c",
         "type": "ui_text",
-        "z": "c38cad85ec437cc0",
+        "z": "8e353faac045437c",
         "group": "1fcd501100c708e0",
         "order": 2,
-        "width": 7,
-        "height": 3,
+        "width": 5,
+        "height": 1,
         "name": "",
         "label": "Quantidade de Dispositivos",
         "format": "{{msg.count}}",
